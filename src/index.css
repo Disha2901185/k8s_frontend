@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-sans: "Host Grotesk", sans-serif;
+    --color-main: #1d1d1f;
+    --color-neutral: #525252;
+    --color-sub: #878787;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+
+    html,
+    body {
+        @apply antialiased text-main dark:text-neutral-50;
+        color-scheme: light;
+        scroll-behavior: smooth;
+        --color-grid: #f1f5f9;
+        --color-chart-other: #e2e8f0;
+    }
+
+    html.dark,
+    html.dark body {
+        color-scheme: dark;
+        --color-grid: #262626;
+        --color-chart-other: #404040;
+    }
+
+    button {
+        cursor: pointer;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-sans tracking-tight;
+    }
+
+    h1 {
+        @apply font-extrabold text-4xl lg:text-5xl;
+    }
+
+    h2 {
+        @apply font-bold text-3xl lg:text-4xl;
+    }
+
+    h3 {
+        @apply font-bold text-2xl lg:text-3xl;
+    }
+
+    h4 {
+        @apply font-semibold text-xl lg:text-2xl;
+    }
+
+    h5 {
+        @apply font-semibold text-lg;
+    }
+
+    h6 {
+        @apply font-medium text-base;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    :is(html.dark) ::-webkit-scrollbar-track {
+        @apply bg-neutral-950;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-neutral-200 rounded-full hover:bg-neutral-300;
+    }
+
+    :is(html.dark) ::-webkit-scrollbar-thumb {
+        @apply bg-neutral-800 hover:bg-neutral-700;
+    }
+}
+
+.animate-in {
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+.fade-in {
+    opacity: 0;
+    animation-name: fadeIn;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes loading-bar {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.animate-loading-bar {
+    animation: loading-bar 1.5s infinite linear;
+}
